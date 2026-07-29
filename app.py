@@ -14,7 +14,7 @@ st.set_page_config(
 )
 
 # Judul Utama
-st.title("📊 Aplikasi Generator Grafik Barber-Johnson")
+st.title("Aplikasi Generator Grafik Barber-Johnson")
 st.markdown("Aplikasi interaktif untuk analisis efisiensi pelayanan rawat inap Rumah Sakit.")
 st.divider()
 
