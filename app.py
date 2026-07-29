@@ -124,7 +124,7 @@ with col2:
     is_efisien = (60.0 <= bor <= 85.0) and (1.0 <= toi <= 3.0)
 
     if is_efisien:
-        st.success("✅ EFISIEN: Berada dalam rentang standar Depkes RI (BOR 60-85%, TOI 1-3 hari).")
+        st.success("✅ EFISIEN: Berada dalam rentang standar Depkes RI.")
     else:
         st.error("❌ BELUM EFISIEN: Berada di luar rentang standar Depkes RI.")
 
