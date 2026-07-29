@@ -4,35 +4,29 @@ import numpy as np
 import matplotlib.ticker as ticker
 from matplotlib.patches import FancyBboxPatch
 
-# -------------------------------------------------------------
 # 1. KONFIGURASI HALAMAN WEB
-# -------------------------------------------------------------
 st.set_page_config(
-    page_title="Aplikasi Grafik Barber-Johnson",
+    page_title="Aplikasi Grafik Barber Johnson",
     page_icon="📊",
     layout="wide"
 )
 
 # Judul Utama
-st.title("Aplikasi Generator Grafik Barber-Johnson")
+st.title("Aplikasi Generator Grafik Barber Johnson")
 st.markdown("Aplikasi interaktif untuk analisis efisiensi pelayanan rawat inap Rumah Sakit.")
 st.divider()
 
-# -------------------------------------------------------------
 # 2. PANEL INPUT DATA (SIDEBAR KIRI)
-# -------------------------------------------------------------
 st.sidebar.header("⚙️ Form Input Data RS")
 
-periode = st.sidebar.text_input("Nama Periode / Ruangan", value="Januari 2026")
+periode = st.sidebar.text_input("Nama Periode (misal: Januari 2026)", value="Januari 2026")
 bor     = st.sidebar.number_input("1. BOR - Bed Occupancy Rate (%)", min_value=0.0, max_value=100.0, value=63.10, step=0.10, format="%.2f")
 los     = st.sidebar.number_input("2. AvLOS - Length of Stay (Hari)", min_value=0.0, value=3.11, step=0.01, format="%.2f")
 toi     = st.sidebar.number_input("3. TOI - Turn Over Interval (Hari)", min_value=0.0, value=1.82, step=0.01, format="%.2f")
 bto     = st.sidebar.number_input("4. BTO - Bed Turnover (Kali)", min_value=0.0, value=6.28, step=0.01, format="%.2f")
-jumlah_hari = st.sidebar.number_input("5. Jumlah Hari Periode (misal: 31 utk Jan)", min_value=1, value=31, step=1)
+jumlah_hari = st.sidebar.number_input("5. Jumlah Hari Periode (misal: 31 untuk Jan)", min_value=1, value=31, step=1)
 
-# -------------------------------------------------------------
 # 3. PROSES PEMBUATAN GRAFIK
-# -------------------------------------------------------------
 col1, col2 = st.columns([2.5, 1])
 
 with col1:
@@ -41,7 +35,7 @@ with col1:
     max_x = 8
     max_y = 15
     
-    # A. DAERAH EFISIENSI (Sesuai Desain Revisi)
+    # A. DAERAH EFISIENSI
     x_poly = [1.0, 1.0, 3.0, 3.0, 1.17]
     y_poly = [3.5, 14.0, 14.0, 9.35, 3.5]
     
@@ -105,7 +99,7 @@ with col1:
     # F. STYLING SKALA SUMBU
     ax.set_xlabel('TOI ( Turn Over Interval )', fontweight='bold', fontsize=11)
     ax.set_ylabel('AvLOS ( Average Lenght Of Stay )', fontweight='bold', fontsize=11)
-    ax.set_title(f'Grafik Barber-Johnson — Periode {periode}', fontweight='bold', fontsize=13, pad=15)
+    ax.set_title(f'Grafik Barber Johnson — Periode {periode}', fontweight='bold', fontsize=13, pad=15)
     
     ax.set_xlim(0, max_x)
     ax.set_ylim(0, max_y)
@@ -122,9 +116,7 @@ with col1:
     # Tampilkan Grafik di Web
     st.pyplot(fig)
 
-# -------------------------------------------------------------
 # 4. KOTAK KESIMPULAN OTOMATIS (SIDE PANEL KANAN)
-# -------------------------------------------------------------
 with col2:
     st.subheader("📋 Status Efisiensi")
     
