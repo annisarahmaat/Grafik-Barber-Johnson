@@ -130,12 +130,10 @@ with col2:
     
     # Evaluasi sederhana: Apakah titik (TOI, LOS) ada di dalam polygon efisiensi?
     # Cek sederhana berdasarkan batas standar:
-    is_efisien = (1.0 <= toi <= 3.0) and (3.5 <= los <= 14.0) and (75.0 <= bor <= 85.0)
-    
-   if (1 <= toi <= 3) and (3 <= los <= 12):
-    st.success("✅ EFISIEN: Titik observasi berada di dalam daerah efisiensi standar.")
+    if (1 <= toi <= 3) and (3 <= los <= 12):
+        st.success("✅ EFISIEN: Titik observasi berada di dalam daerah efisiensi standar.")
     else:
-    st.error("❌ BELUM EFISIEN: Titik observasi berada di luar daerah efisiensi standar.")
+        st.error("❌ BELUM EFISIEN: Titik observasi berada di luar daerah efisiensi standar.")
 
     st.markdown("---")
     st.markdown("**Ringkasan Indikator:**")
