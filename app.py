@@ -120,12 +120,13 @@ with col1:
 with col2:
     st.subheader("📋 Status Efisiensi")
     
-    # Evaluasi sederhana: Apakah titik (TOI, LOS) ada di dalam polygon efisiensi?
-    # Cek sederhana berdasarkan batas standar:
-    if (1 <= toi <= 3) and (3 <= los <= 12):
-        st.success("✅ EFISIEN: Titik observasi berada di dalam daerah efisiensi standar.")
+    # Cek sederhana berdasarkan standar Depkes (BOR: 60-85%, TOI: 1-3 hari):
+    is_efisien = (60.0 <= bor <= 85.0) and (1.0 <= toi <= 3.0)
+
+    if is_efisien:
+        st.success("✅ EFISIEN: Berada dalam rentang standar Depkes RI (BOR 60-85%, TOI 1-3 hari).")
     else:
-        st.error("❌ BELUM EFISIEN: Titik observasi berada di luar daerah efisiensi standar.")
+        st.error("❌ BELUM EFISIEN: Berada di luar rentang standar Depkes RI.")
 
     st.markdown("---")
     st.markdown("**Ringkasan Indikator:**")
