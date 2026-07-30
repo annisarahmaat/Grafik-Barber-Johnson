@@ -141,7 +141,32 @@ with col2:
 
     st.markdown("---")
     st.markdown("**Ringkasan Indikator:**")
-    st.metric("BOR", f"{bor:.2f}%" if bor is not None else "-")
-    st.metric("AvLOS", f"{los:.2f} hari" if los is not None else "-")
-    st.metric("TOI", f"{toi:.2f} hari" if toi is not None else "-")
-    st.metric("BTO", f"{bto:.2f} kali" if bto is not None else "-")
+    st.caption("*Arahkan kursor ke ikon (?) untuk melihat pengertian indikator.*")
+    
+    # BOR dengan Tooltip Help
+    st.metric(
+        label="BOR (Bed Occupancy Rate)", 
+        value=f"{bor:.2f}%" if bor is not None else "-",
+        help="Persentase pemakaian tempat tidur dalam periode tertentu.\n Standar Depkes: 60 - 85%"
+    )
+    
+    # AvLOS dengan Tooltip Help
+    st.metric(
+        label="AvLOS (Average Length of Stay)", 
+        value=f"{los:.2f} hari" if los is not None else "-",
+        help="Rata-rata lamanya seorang pasien dirawat inap.\n Standar Depkes: 6 - 9 hari"
+    )
+    
+    # TOI dengan Tooltip Help
+    st.metric(
+        label="TOI (Turn Over Interval)", 
+        value=f"{toi:.2f} hari" if toi is not None else "-",
+        help="Rata-rata hari tempat tidur kosong sampai diisi pasien berikutnya.\n Standar Depkes: 1 - 3 hari"
+    )
+    
+    # BTO dengan Tooltip Help
+    st.metric(
+        label="BTO (Bed Turnover)", 
+        value=f"{bto:.2f} kali" if bto is not None else "-",
+        help="Frekuensi pemakaian satu tempat tidur oleh pasien dalam satu periode.\n Standar Depkes: > 40 kali/tahun"
+    )
