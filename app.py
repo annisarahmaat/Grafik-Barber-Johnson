@@ -26,6 +26,12 @@ toi     = st.sidebar.number_input("3. TOI - Turn Over Interval (Hari)", min_valu
 bto     = st.sidebar.number_input("4. BTO - Bed Turnover (Kali)", min_value=0.0, value=None, step=0.01, format="%.2f")
 jumlah_hari = st.sidebar.number_input("5. Jumlah Hari Periode (misal: 31 untuk Jan)", min_value=1, value=None, step=1)
 
+# PENGECEKAN INPUT (Hanya diproses JIKA SEMUA DATA SUDAH DIISI)
+if bor is not None and los is not None and toi is not None and bto is not None and jumlah_hari is not None:
+    
+    # Jika user belum mengisi Nama Periode, beri default nama "Input Data"
+    nama_periode = periode if periode.strip() != "" else "Input Data"
+
 # 3. PROSES PEMBUATAN GRAFIK
 col1, col2 = st.columns([2.5, 1])
 
