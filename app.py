@@ -30,7 +30,7 @@ jumlah_hari = st.sidebar.number_input("5. Jumlah Hari Periode (misal: 31 untuk J
 data_lengkap = (bor is not None) and (los is not None) and (toi is not None) and (bto is not None) and (jumlah_hari is not None)
 
 # Tentukan Nama Periode
-nama_periode = periode.strip() if periode.strip() != "" else ("Input Data" if data_lengkap else "Kosong")
+nama_periode = periode.strip() if periode.strip() != "" else ("Input Data" if data_lengkap else "-")
 
 # 3. PROSES PEMBUATAN GRAFIK
 col1, col2 = st.columns([2.5, 1])
