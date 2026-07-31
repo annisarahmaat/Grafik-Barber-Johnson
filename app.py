@@ -130,7 +130,7 @@ with col2:
     
     # Status Efisiensi
     if data_lengkap:
-        is_efisien = (60.0 <= bor <= 85.0) and (1.0 <= toi <= 3.0)
+        is_efisien = (60.0 <= bor <= 85.0) and (1.0 <= toi <= 3.0) and (6.0 <= los <= 9.0)
 
         if is_efisien:
             st.success("✅ EFISIEN: Berada dalam rentang standar Depkes RI.")
