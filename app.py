@@ -43,7 +43,7 @@ with col1:
     
     # A. DAERAH EFISIENSI 
     x_poly = [1.0, 3.0, 3.0, 1.0]
-    y_poly = [3.0, 4.5, 12.0, 12.0]
+    y_poly = [3.0, 8.5, 12.0, 12.0]
 
     ax.fill(x_poly, y_poly, color='#b0a875', alpha=0.75, label='Daerah Efisiensi')
     ax.text(2.1, 7.5, 'Daerah\nEfisiensi', fontsize=11, color='#2c2810', fontweight='bold', 
