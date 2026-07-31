@@ -47,7 +47,7 @@ with col1:
 
     ax.fill(x_poly, y_poly, color='#b0a875', alpha=0.75, label='Daerah Efisiensi')
     ax.text(2.1, 7.5, 'Daerah\nEfisiensi', fontsize=11, color='#2c2810', fontweight='bold', 
-            ha='center', va='center')
+            ha='upper', va='upper')
 
     x_grid = np.linspace(0, max_x, 500)
 
