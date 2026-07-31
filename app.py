@@ -41,12 +41,12 @@ with col1:
     max_x = 8
     max_y = 15
     
-    # A. DAERAH EFISIENSI
-    x_poly = [1.0, 1.0, 3.0, 3.0, 1.17]
-    y_poly = [3.5, 14.0, 14.0, 9.35, 3.5]
-    
+    # A. DAERAH EFISIENSI (Standar Depkes 6-9 Hari)
+    x_poly = [1.06, 3.00, 3.00, 1.59]
+    y_poly = [6.00, 6.00, 9.00, 9.00]
+
     ax.fill(x_poly, y_poly, color='#b0a875', alpha=0.75, label='Daerah Efisiensi')
-    ax.text(2.0, 10.5, 'Daerah\nEfisiensi', fontsize=12, color='#2c2810', fontweight='bold', 
+    ax.text(2.1, 7.5, 'Daerah\nEfisiensi', fontsize=11, color='#2c2810', fontweight='bold', 
             ha='center', va='center')
 
     x_grid = np.linspace(0, max_x, 500)
