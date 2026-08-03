@@ -1,4 +1,4 @@
-import streamlit as st
+    import streamlit as st
 import matplotlib.pyplot as plt
 import numpy as np
 import matplotlib.ticker as ticker
@@ -130,14 +130,15 @@ with col2:
     
     # Status Efisiensi
     if data_lengkap:
-        # Hitung BTO minimal proporsional berdasarkan jumlah hari periode (Standar Depkes: 40 kali/tahun)
+        # Hitung BTO minimal proporsional berdasarkan jumlah hari periode
         bto_min_periode = (40.0 / 365.0) * jumlah_hari
+        bto_max_periode = (50.0 / 365.0) * jumlah_hari
         
         # Pengecekan Ke-4 Indikator 
         bor_ok   = 60.0 <= bor <= 85.0
         toi_ok   = 1.0 <= toi <= 3.0
         los_ok   = 6.0 <= los <= 9.0
-        bto_ok   = bto >= bto_min_periode
+        bto_ok   = bto_min_periode <= bto <= bto_max_periode
 
         is_efisien = bor_ok and toi_ok and los_ok and bto_ok
 
@@ -154,7 +155,7 @@ with col2:
             if not toi_ok:
                 alasan.append(f" TOI ({toi:.2f} hari) tidak dalam batas 1-3 hari")
             if not bto_ok:
-                alasan.append(f" BTO ({bto:.2f} kali) di bawah batas minimal periode ({bto_min_periode:.2f} kali)")
+                alasan.append(f"BTO ({bto:.2f} kali) tidak dalam batas {bto_min_periode:.2f}-{bto_max_periode:.2f} kali")
             
             teks_alasan = "\n".join([f"- {item}" for item in alasan])
             
@@ -192,5 +193,5 @@ with col2:
     st.metric(
         label="BTO (Bed Turnover)", 
         value=f"{bto:.2f} kali" if bto is not None else "-",
-        help="Frekuensi pemakaian satu tempat tidur oleh pasien dalam satu periode.\n Standar Depkes: Minimal 40 kali/tahun"
+        help="Frekuensi pemakaian satu tempat tidur oleh pasien dalam satu periode.\n Standar Depkes: 40-50 kali/tahun"
     )
