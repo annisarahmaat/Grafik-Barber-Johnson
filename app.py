@@ -156,8 +156,11 @@ with col2:
             if not bto_ok:
                 alasan.append(f"• BTO ({bto:.2f} kali) di bawah batas minimal periode ({bto_min_periode:.2f} kali)")
             
-            st.warning("**Penyebab Belum Efisien:**\n" + "\n".join(alasan))
+            st.warning("**Penyebab Belum Efisien:**\n\n" + "\n".join(alasan))
 
+            else:
+            st.error("❌ BELUM EFISIEN: Berada di luar rentang standar Depkes RI.")
+    
     else:
         st.info("➖ Silakan lengkapi seluruh Form Input Data di sebelah kiri untuk melihat status efisiensi.")
 
