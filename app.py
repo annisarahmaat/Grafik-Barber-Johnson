@@ -156,7 +156,12 @@ with col2:
             if not bto_ok:
                 alasan.append(f"• BTO ({bto:.2f} kali) di bawah batas minimal periode ({bto_min_periode:.2f} kali)")
             
-            st.warning("**Penyebab Belum Efisien:**<br>" + "<br>".join(alasan))
+            teks_bullet = "\n".join([f"* {item}" for item in alasan])
+            
+            st.markdown(f"""
+            > **Penyebab Belum Efisien:**
+            {teks_bullet}
+            """)
         
     else:
         st.info("➖ Silakan lengkapi seluruh Form Input Data di sebelah kiri untuk melihat status efisiensi.")
