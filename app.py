@@ -130,12 +130,34 @@ with col2:
     
     # Status Efisiensi
     if data_lengkap:
-        is_efisien = (60.0 <= bor <= 85.0) and (1.0 <= toi <= 3.0) and (6.0 <= los <= 9.0)
+        # Hitung BTO minimal proporsional berdasarkan jumlah hari periode (Standar Depkes: 40 kali/tahun)
+        bto_min_periode = (40.0 / 365.0) * jumlah_hari
+        
+        # Pengecekan Ke-4 Indikator 
+        bor_ok   = 60.0 <= bor <= 85.0
+        toi_ok   = 1.0 <= toi <= 3.0
+        los_ok   = 6.0 <= los <= 9.0
+        bto_ok   = bto >= bto_min_periode
+
+        is_efisien = bor_ok and toi_ok and los_ok and bto_ok
 
         if is_efisien:
             st.success("✅ EFISIEN: Berada dalam rentang standar Depkes RI.")
         else:
             st.error("❌ BELUM EFISIEN: Berada di luar rentang standar Depkes RI.")
+            
+            alasan = []
+            if not bor_ok:
+                alasan.append(f"• BOR ({bor:.2f}%) tidak dalam batas 60-85%")
+            if not los_ok:
+                alasan.append(f"• AvLOS ({los:.2f} hari) tidak dalam batas 6-9 hari")
+            if not toi_ok:
+                alasan.append(f"• TOI ({toi:.2f} hari) tidak dalam batas 1-3 hari")
+            if not bto_ok:
+                alasan.append(f"• BTO ({bto:.2f} kali) di bawah batas minimal periode ({bto_min_periode:.2f} kali)")
+            
+            st.warning("**Penyebab Belum Efisien:**\n" + "\n".join(alasan))
+
     else:
         st.info("➖ Silakan lengkapi seluruh Form Input Data di sebelah kiri untuk melihat status efisiensi.")
 
@@ -168,5 +190,5 @@ with col2:
     st.metric(
         label="BTO (Bed Turnover)", 
         value=f"{bto:.2f} kali" if bto is not None else "-",
-        help="Frekuensi pemakaian satu tempat tidur oleh pasien dalam satu periode.\n Standar Depkes: > 40 kali/tahun"
+        help="Frekuensi pemakaian satu tempat tidur oleh pasien dalam satu periode.\n Standar Depkes: Minimal 40 kali/tahun"
     )
