@@ -148,13 +148,13 @@ with col2:
             
             alasan = []
             if not bor_ok:
-                alasan.append(f"• BOR ({bor:.2f}%) tidak dalam batas 60-85%")
+                alasan.append(f" BOR ({bor:.2f}%) tidak dalam batas 60-85%")
             if not los_ok:
-                alasan.append(f"• AvLOS ({los:.2f} hari) tidak dalam batas 6-9 hari")
+                alasan.append(f" AvLOS ({los:.2f} hari) tidak dalam batas 6-9 hari")
             if not toi_ok:
-                alasan.append(f"• TOI ({toi:.2f} hari) tidak dalam batas 1-3 hari")
+                alasan.append(f" TOI ({toi:.2f} hari) tidak dalam batas 1-3 hari")
             if not bto_ok:
-                alasan.append(f"• BTO ({bto:.2f} kali) di bawah batas minimal periode ({bto_min_periode:.2f} kali)")
+                alasan.append(f" BTO ({bto:.2f} kali) di bawah batas minimal periode ({bto_min_periode:.2f} kali)")
             
             teks_alasan = "\n".join([f"- {item}" for item in alasan])
             
