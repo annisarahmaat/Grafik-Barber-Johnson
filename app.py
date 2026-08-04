@@ -15,7 +15,12 @@ st.markdown(
     <style>
         .block-container {
             padding-top: 1.2rem !important;
-            padding-bottom: 0rem !important;
+            padding-bottom: 0.5rem !important;
+            padding-left: 2rem !important;
+            padding-right: 2rem !important;
+        }
+        [data-testid="stVerticalBlock"] > div {
+            gap: 0.8rem !important;
         }
     </style>
 """,
@@ -44,10 +49,10 @@ data_lengkap = (bor is not None) and (los is not None) and (toi is not None) and
 nama_periode = f"— Periode {periode.strip()}" if periode.strip() != "" else ""
 
 # 3. LAYOUT UTAMA
-col1, col2 = st.columns([1.5, 1])
+col1, col2 = st.columns([1.4, 1])
 
 with col1:
-    fig, ax = plt.subplots(figsize=(3.3, 4), dpi=100)
+    fig, ax = plt.subplots(figsize=(4.8, 5.8), dpi=100)
     
     max_x = 8
     max_y = 15
@@ -77,9 +82,9 @@ with col1:
             end_x = x_grid[valid_bor][-1]
             end_y = y_bor[valid_bor][-1]
             
-            ax.plot(x_grid[valid_bor], y_bor[valid_bor], color=color_bor, linewidth=2.5)
+            ax.plot(x_grid[valid_bor], y_bor[valid_bor], color=color_bor, linewidth=2)
             ax.annotate('', xy=(end_x, end_y), xytext=(end_x*0.95, end_y*0.95),
-                        arrowprops=dict(arrowstyle="->", color=color_bor, lw=2.5))
+                        arrowprops=dict(arrowstyle="->", color=color_bor, lw=2))
 
     # C. GARIS BTO (Hijau)
     if bto is not None and jumlah_hari is not None and bto > 0:
@@ -87,39 +92,39 @@ with col1:
         y_bto = c_bto - x_grid
         valid_bto = (y_bto >= 0) & (y_bto <= max_y) & (x_grid <= max_x)
         if np.any(valid_bto):
-            ax.plot(x_grid[valid_bto], y_bto[valid_bto], color=color_bto, linestyle='-', linewidth=2.0)
+            ax.plot(x_grid[valid_bto], y_bto[valid_bto], color=color_bto, linestyle='-', linewidth=1.8)
 
     # D. GARIS TOI & AvLOS + TITIK HASIL
     if toi is not None and los is not None:
-        ax.plot([toi, toi], [0, los], color=color_toi, linestyle='--', linewidth=2.0, zorder=4)
-        ax.plot([0, toi], [los, los], color=color_los, linestyle='--', linewidth=2.0, zorder=4)
-        ax.scatter(toi, los, color='black', s=80, zorder=6)
+        ax.plot([toi, toi], [0, los], color=color_toi, linestyle='--', linewidth=1.8, zorder=4)
+        ax.plot([0, toi], [los, los], color=color_los, linestyle='--', linewidth=1.8, zorder=4)
+        ax.scatter(toi, los, color='black', s=70, zorder=6)
 
     # E. KOTAK LEGENDA IN-GRAPH
     if data_lengkap:
-        box = FancyBboxPatch((4.2, 10.5), 3.5, 4.0, boxstyle="round,pad=0.2", 
-                             facecolor='#ffffff', edgecolor='#cbd5e1', linewidth=1.5, zorder=3)
+        box = FancyBboxPatch((4.2, 7.8), 3.5, 3.6, boxstyle="round,pad=0.2", 
+                             facecolor='#ffffff', edgecolor='#cbd5e1', linewidth=1.2, zorder=5)
         ax.add_patch(box)
 
         lbl_periode = periode.strip() if periode.strip() != "" else "Input Data"
-        ax.text(5.95, 14.1, f"Keterangan — {lbl_periode}", fontsize=10, fontweight='bold', color='#0f172a', ha='center', va='top', zorder=4)
+        ax.text(5.95, 14.1, f"Keterangan — {lbl_periode}", fontsize=8.5, fontweight='bold', color='#0f172a', ha='center', va='top', zorder=6)
         
-        y_start = 13.3
-        ax.text(4.5, y_start,        "— BOR", color=color_bor, fontweight='bold', fontsize=9.5, va='top', zorder=4)
-        ax.text(6.1, y_start,        f": {bor:.2f}%", color='#334155', fontweight='bold', fontsize=9.5, va='top', zorder=4)
+        y_start = 10.3
+        ax.text(4.4, y_start,        "— BOR", color=color_bor, fontweight='bold', fontsize=8, va='top', zorder=6)
+        ax.text(6.0, y_start,        f": {bor:.2f}%", color='#334155', fontweight='bold', fontsize=8, va='top', zorder=6)
         
-        ax.text(4.5, y_start - 0.65, "— BTO", color=color_bto, fontweight='bold', fontsize=9.5, va='top', zorder=4)
-        ax.text(6.1, y_start - 0.65, f": {bto:.2f} kali", color='#334155', fontweight='bold', fontsize=9.5, va='top', zorder=4)
+        ax.text(4.4, y_start - 0.6, "— BTO", color=color_bto, fontweight='bold', fontsize=8, va='top', zorder=6)
+        ax.text(6.0, y_start - 0.6, f": {bto:.2f} kali", color='#334155', fontweight='bold', fontsize=8, va='top', zorder=6)
         
-        ax.text(4.5, y_start - 1.30, "— TOI", color=color_toi, fontweight='bold', fontsize=9.5, va='top', zorder=4)
-        ax.text(6.1, y_start - 1.30, f": {toi:.2f} hari", color='#334155', fontweight='bold', fontsize=9.5, va='top', zorder=4)
+        ax.text(4.4, y_start - 1.2, "— TOI", color=color_toi, fontweight='bold', fontsize=8, va='top', zorder=6)
+        ax.text(6.0, y_start - 1.2, f": {toi:.2f} hari", color='#334155', fontweight='bold', fontsize=8, va='top', zorder=6)
         
-        ax.text(4.5, y_start - 1.95, "— AvLOS", color=color_los, fontweight='bold', fontsize=9.5, va='top', zorder=4)
-        ax.text(6.1, y_start - 1.95, f": {los:.2f} hari", color='#334155', fontweight='bold', fontsize=9.5, va='top', zorder=4)
+        ax.text(4.4, y_start - 1.8, "— AvLOS", color=color_los, fontweight='bold', fontsize=8, va='top', zorder=6)
+        ax.text(6.0, y_start - 1.8, f": {los:.2f} hari", color='#334155', fontweight='bold', fontsize=8, va='top', zorder=6)
 
     # F. STYLING SKALA SUMBU
-    ax.set_xlabel('TOI (Turn Over Interval)', fontweight='bold', fontsize=7)
-    ax.set_ylabel('AvLOS (Average Lenght Of Stay)', fontweight='bold', fontsize=7)
+    ax.set_xlabel('TOI (Turn Over Interval)', fontweight='bold', fontsize=7, labelpad=4)
+    ax.set_ylabel('AvLOS (Average Lenght Of Stay)', fontweight='bold', fontsize=7, labelpad=4)
     ax.set_title(f'Grafik Barber Johnson {nama_periode}', fontweight='bold', fontsize=9, pad=10)
     
     ax.set_xlim(0, max_x)
@@ -160,34 +165,32 @@ with col2:
     else:
         st.info("➖ Silakan lengkapi seluruh Form Input Data di sebelah kiri untuk melihat status efisiensi.")
 
-    st.markdown("---")
+    st.divider()
     st.markdown("**Ringkasan Indikator:**")
-    st.caption("*Arahkan kursor ke ikon (?) untuk melihat pengertian indikator.*")
-    
-    # BOR
-    st.metric(
-        label="BOR (Bed Occupancy Rate)", 
-        value=f"{bor:.2f}%" if bor is not None else "-",
-        help="Persentase pemakaian tempat tidur dalam periode tertentu.\n Standar Depkes: 60 - 85%"
+    st.caption(
+        "*Arahkan kursor ke ikon (?) untuk melihat pengertian & acuan indikator.*"
     )
-    
-    # AvLOS
-    st.metric(
-        label="AvLOS (Average Length of Stay)", 
-        value=f"{los:.2f} hari" if los is not None else "-",
-        help="Rata-rata lamanya seorang pasien dirawat inap.\n Standar Depkes: 6 - 9 hari"
-    )
-    
-    # TOI
-    st.metric(
-        label="TOI (Turn Over Interval)", 
-        value=f"{toi:.2f} hari" if toi is not None else "-",
-        help="Rata-rata hari tempat tidur kosong sampai diisi pasien berikutnya.\n Standar Depkes: 1 - 3 hari"
-    )
-    
-    # BTO
-    st.metric(
-        label="BTO (Bed Turn Over)", 
-        value=f"{bto:.2f} kali" if bto is not None else "-",
-        help="Frekuensi pemakaian satu tempat tidur oleh pasien dalam satu periode.\n Standar Depkes: 40-50 kali/tahun"
-    )
+
+    m1, m2 = st.columns(2)
+    with m1:
+        st.metric(
+            label="BOR",
+            value=f"{bor:.2f}%" if bor is not None else "-",
+            help="Bed Occupancy Rate\nPersentase pemakaian tempat tidur.\n• Standar Depkes: 60 - 85%",
+        )
+        st.metric(
+            label="TOI",
+            value=f"{toi:.2f} hari" if toi is not None else "-",
+            help="Turn Over Interval\nRata-rata tempat tidur kosong.\n• Standar Depkes: 1 - 3 hari",
+        )
+    with m2:
+        st.metric(
+            label="AvLOS",
+            value=f"{los:.2f} hari" if los is not None else "-",
+            help="Average Length of Stay\nRata-rata lama dirawat.\n• Standar Depkes: 6 - 9 hari",
+        )
+        st.metric(
+            label="BTO",
+            value=f"{bto:.2f} kali" if bto is not None else "-",
+            help="Bed Turnover\nFrekuensi pemakaian tempat tidur.\n• Standar Depkes: 40 - 50 kali/tahun",
+        )
