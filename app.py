@@ -120,17 +120,19 @@ with col1:
     # F. STYLING SKALA SUMBU
     ax.set_xlabel('TOI (Turn Over Interval)', fontweight='bold', fontsize=7)
     ax.set_ylabel('AvLOS (Average Lenght Of Stay)', fontweight='bold', fontsize=7)
-    ax.set_title(f'Grafik Barber Johnson {nama_periode}', fontweight='bold', fontsize=9, pad=15)
+    ax.set_title(f'Grafik Barber Johnson {nama_periode}', fontweight='bold', fontsize=9, pad=10)
     
     ax.set_xlim(0, max_x)
     ax.set_ylim(0, max_y)
+
+    ax.tick_params(axis='both', which='major', labelsize=6.5)
     
     ax.xaxis.set_major_locator(ticker.MultipleLocator(1))
     ax.yaxis.set_major_locator(ticker.MultipleLocator(1))
     
-    ax.grid(True, which='major', color='#cbd5e1', linestyle='-', linewidth=0.6)
+    ax.grid(True, which='major', color='#cbd5e1', linestyle='-', linewidth=0.5)
     ax.minorticks_on()
-    ax.grid(True, which='minor', color='#e2e8f0', linestyle=':', linewidth=0.5)
+    ax.grid(True, which='minor', color='#e2e8f0', linestyle=':', linewidth=0.4)
     
     plt.tight_layout()
     st.pyplot(fig, use_container_width=False)
