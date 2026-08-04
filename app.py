@@ -32,10 +32,10 @@ data_lengkap = (bor is not None) and (los is not None) and (toi is not None) and
 nama_periode = f"— Periode {periode.strip()}" if periode.strip() != "" else ""
 
 # 3. LAYOUT UTAMA
-col1, col2 = st.columns([2.5, 1])
+col1, col2 = st.columns([1.8, 1])
 
 with col1:
-    fig, ax = plt.subplots(figsize=(8.5, 7.5), dpi=120)
+    fig, ax = plt.subplots(figsize=(5.5, 4.5), dpi=100)
     
     max_x = 8
     max_y = 15
