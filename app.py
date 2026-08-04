@@ -10,9 +10,21 @@ st.set_page_config(
     page_title="Aplikasi Grafik Barber Johnson", page_icon="📊", layout="wide"
 )
 
+st.markdown(
+    """
+    <style>
+        .block-container {
+            padding-top: 1.2rem !important;
+            padding-bottom: 0rem !important;
+        }
+    </style>
+""",
+    unsafe_allow_html=True,
+)
+
 # Judul Utama
 st.title("Aplikasi Generator Grafik Barber Johnson")
-st.markdown("Aplikasi interaktif untuk analisis efisiensi pelayanan rawat inap Rumah Sakit.")
+st.markdown("Aplikasi interaktif untuk analisis efisiensi pelayanan rawat inap rumah sakit.")
 st.divider()
 
 # 2. PANEL INPUT DATA (SIDEBAR KIRI)
@@ -32,10 +44,10 @@ data_lengkap = (bor is not None) and (los is not None) and (toi is not None) and
 nama_periode = f"— Periode {periode.strip()}" if periode.strip() != "" else ""
 
 # 3. LAYOUT UTAMA
-col1, col2 = st.columns([1.8, 1])
+col1, col2 = st.columns([2, 1])
 
 with col1:
-    fig, ax = plt.subplots(figsize=(5.5, 4.5), dpi=100)
+    fig, ax = plt.subplots(figsize=(6, 6), dpi=100)
     
     max_x = 8
     max_y = 15
