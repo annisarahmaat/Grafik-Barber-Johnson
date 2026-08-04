@@ -33,9 +33,9 @@ st.sidebar.caption("Silakan isi data indikator operasional di bawah ini:")
 
 periode     = st.sidebar.text_input("Nama Periode (misal: Januari 2026)", value="")
 bor         = st.sidebar.number_input("1. BOR - Bed Occupancy Rate (%)", min_value=0.0, max_value=100.0, value=None, step=0.10, format="%.2f")
-los         = st.sidebar.number_input("2. AvLOS - Length of Stay (Hari)", min_value=0.0, value=None, step=0.01, format="%.2f")
-toi         = st.sidebar.number_input("3. TOI - Turn Over Interval (Hari)", min_value=0.0, value=None, step=0.01, format="%.2f")
-bto         = st.sidebar.number_input("4. BTO - Bed Turnover (Kali)", min_value=0.0, value=None, step=0.01, format="%.2f")
+los         = st.sidebar.number_input("2. AvLOS - Length of Stay (hari)", min_value=0.0, value=None, step=0.01, format="%.2f")
+toi         = st.sidebar.number_input("3. TOI - Turn Over Interval (hari)", min_value=0.0, value=None, step=0.01, format="%.2f")
+bto         = st.sidebar.number_input("4. BTO - Bed Turn Over (kali)", min_value=0.0, value=None, step=0.01, format="%.2f")
 jumlah_hari = st.sidebar.number_input("5. Jumlah Hari Periode (misal: 31 untuk Jan)", min_value=1, value=None, step=1)
 
 # Pengecekan Kelengkapan Seluruh Data
@@ -118,8 +118,8 @@ with col1:
         ax.text(6.1, y_start - 1.95, f": {los:.2f} hari", color='#334155', fontweight='bold', fontsize=9.5, va='top', zorder=4)
 
     # F. STYLING SKALA SUMBU
-    ax.set_xlabel('TOI ( Turn Over Interval )', fontweight='bold', fontsize=11)
-    ax.set_ylabel('AvLOS ( Average Lenght Of Stay )', fontweight='bold', fontsize=11)
+    ax.set_xlabel('TOI (Turn Over Interval)', fontweight='bold', fontsize=11)
+    ax.set_ylabel('AvLOS (Average Lenght Of Stay)', fontweight='bold', fontsize=11)
     ax.set_title(f'Grafik Barber Johnson {nama_periode}', fontweight='bold', fontsize=13, pad=15)
     
     ax.set_xlim(0, max_x)
@@ -185,7 +185,7 @@ with col2:
     
     # BTO
     st.metric(
-        label="BTO (Bed Turnover)", 
+        label="BTO (Bed Turn Over)", 
         value=f"{bto:.2f} kali" if bto is not None else "-",
         help="Frekuensi pemakaian satu tempat tidur oleh pasien dalam satu periode.\n Standar Depkes: 40-50 kali/tahun"
     )
