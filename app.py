@@ -138,10 +138,10 @@ with col2:
 
         if is_efisien:
             st.success("✅ EFISIEN")
-            st.write("**Keterangan:** Titik perpotongan koordinat berada di **dalam** Daerah Efisiensi Grafik Barber Johnson.")
+            st.write("**Keterangan:** Titik perpotongan koordinat berada di **dalam** daerah efisiensi Grafik Barber Johnson.")
         else:
             st.error("❌ BELUM EFISIEN")
-            st.write("**Keterangan:** Titik perpotongan koordinat berada di **luar** Daerah Efisiensi Grafik Barber Johnson.")
+            st.write("**Keterangan:** Titik perpotongan koordinat berada di **luar** daerah efisiensi Grafik Barber Johnson.")
         
     else:
         st.info("➖ Silakan lengkapi seluruh Form Input Data di sebelah kiri untuk melihat status efisiensi.")
