@@ -133,7 +133,7 @@ with col1:
     ax.grid(True, which='minor', color='#e2e8f0', linestyle=':', linewidth=0.5)
     
     plt.tight_layout()
-    st.pyplot(fig)
+    st.pyplot(fig, use_container_width=False)
 
 # 4. KOTAK KESIMPULAN OTOMATIS
 with col2:
