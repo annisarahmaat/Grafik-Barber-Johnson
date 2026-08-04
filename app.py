@@ -35,7 +35,7 @@ nama_periode = f"— Periode {periode.strip()}" if periode.strip() != "" else ""
 col1, col2 = st.columns([2.5, 1])
 
 with col1:
-    fig, ax = plt.subplots(figsize=(7.5, 8.5), dpi=100)
+    fig, ax = plt.subplots(figsize=(8.5, 7.5), dpi=150)
     
     max_x = 8
     max_y = 15
