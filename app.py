@@ -2,13 +2,12 @@ import streamlit as st
 import matplotlib.pyplot as plt
 import numpy as np
 import matplotlib.ticker as ticker
+from matplotlib.path import Path
 from matplotlib.patches import FancyBboxPatch
 
 # 1. KONFIGURASI HALAMAN WEB
 st.set_page_config(
-    page_title="Aplikasi Grafik Barber Johnson",
-    page_icon="📊",
-    layout="wide"
+    page_title="Aplikasi Grafik Barber Johnson", page_icon="📊", layout="wide"
 )
 
 # Judul Utama
@@ -130,36 +129,19 @@ with col2:
     
     # Status Efisiensi
     if data_lengkap:
-        # Hitung BTO minimal proporsional berdasarkan jumlah hari periode
-        bto_min_periode = (40.0 / 365.0) * jumlah_hari
-        bto_max_periode = (50.0 / 365.0) * jumlah_hari
+        # Pengecekan posisi titik (TOI, AvLOS) terhadap Polygon Daerah Efisiensi
+        polygon_efisiensi = Path(list(zip(x_poly, y_poly)))
+        titik_koordinat = (toi, los)
         
-        # Pengecekan Ke-4 Indikator 
-        bor_ok   = 60.0 <= bor <= 85.0
-        toi_ok   = 1.0 <= toi <= 3.0
-        los_ok   = 6.0 <= los <= 9.0
-        bto_ok   = bto_min_periode <= bto <= bto_max_periode
-
-        is_efisien = bor_ok and toi_ok and los_ok and bto_ok
+        # returns True jika titik berada di dalam arsiran 
+        is_efisien = polygon_efisiensi.contains_point(titik_koordinat)
 
         if is_efisien:
-            st.success("✅ EFISIEN: Berada dalam rentang standar Depkes RI.")
+            st.success("✅ EFISIEN")
+            st.write("**Keterangan:** Titik perpotongan koordinat berada di **dalam** Daerah Efisiensi Grafik Barber Johnson.")
         else:
-            st.error("❌ BELUM EFISIEN: Berada di luar rentang standar Depkes RI.")
-            
-            alasan = []
-            if not bor_ok:
-                alasan.append(f" BOR ({bor:.2f}%) tidak dalam batas 60-85%")
-            if not los_ok:
-                alasan.append(f" AvLOS ({los:.2f} hari) tidak dalam batas 6-9 hari")
-            if not toi_ok:
-                alasan.append(f" TOI ({toi:.2f} hari) tidak dalam batas 1-3 hari")
-            if not bto_ok:
-                alasan.append(f"BTO ({bto:.2f} kali) tidak dalam batas {bto_min_periode:.2f}-{bto_max_periode:.2f} kali")
-            
-            teks_alasan = "\n".join([f"- {item}" for item in alasan])
-            
-            st.markdown(f"**Penyebab Belum Efisien:**\n{teks_alasan}")
+            st.error("❌ BELUM EFISIEN")
+            st.write("**Keterangan:** Titik perpotongan koordinat berada di **luar** Daerah Efisiensi Grafik Barber Johnson.")
         
     else:
         st.info("➖ Silakan lengkapi seluruh Form Input Data di sebelah kiri untuk melihat status efisiensi.")
