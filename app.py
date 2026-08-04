@@ -57,7 +57,7 @@ with col1:
     y_poly = [3.0, 8.5, 12.0, 12.0]
 
     ax.fill(x_poly, y_poly, color='#b0a875', alpha=0.75, label='Daerah Efisiensi')
-    ax.text(2.0, 9.5, 'Daerah\nEfisiensi', fontsize=11, color='#2c2810', fontweight='bold', 
+    ax.text(2.0, 9.5, 'Daerah\nEfisiensi', fontsize=7, color='#2c2810', fontweight='bold', 
             ha='center', va='center')
 
     x_grid = np.linspace(0, max_x, 500)
@@ -118,9 +118,9 @@ with col1:
         ax.text(6.1, y_start - 1.95, f": {los:.2f} hari", color='#334155', fontweight='bold', fontsize=9.5, va='top', zorder=4)
 
     # F. STYLING SKALA SUMBU
-    ax.set_xlabel('TOI (Turn Over Interval)', fontweight='bold', fontsize=11)
-    ax.set_ylabel('AvLOS (Average Lenght Of Stay)', fontweight='bold', fontsize=11)
-    ax.set_title(f'Grafik Barber Johnson {nama_periode}', fontweight='bold', fontsize=13, pad=15)
+    ax.set_xlabel('TOI (Turn Over Interval)', fontweight='bold', fontsize=7)
+    ax.set_ylabel('AvLOS (Average Lenght Of Stay)', fontweight='bold', fontsize=7)
+    ax.set_title(f'Grafik Barber Johnson {nama_periode}', fontweight='bold', fontsize=9, pad=15)
     
     ax.set_xlim(0, max_x)
     ax.set_ylim(0, max_y)
